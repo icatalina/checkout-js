@@ -21,6 +21,7 @@ import OrderConfirmationSection from './OrderConfirmationSection';
 import OrderStatus from './OrderStatus';
 import PrintLink from './PrintLink';
 import ThankYouHeader from './ThankYouHeader';
+import { WheelOfFortune } from './WheelOfFortune';
 
 const OrderSummary = lazy(() => retry(() => import(
     /* webpackChunkName: "order-summary" */
@@ -104,6 +105,7 @@ class OrderConfirmation extends Component<
             storeProfile: {
                 orderEmail,
                 storePhoneNumber,
+                storeHash,
             },
             shopperConfig,
             links: {
@@ -141,6 +143,8 @@ class OrderConfirmation extends Component<
                             customerCanBeCreated: !order.customerId,
                             shopperConfig,
                         }) }
+
+                        <WheelOfFortune orderId={ order.orderId } storeHash={ storeHash } />
 
                         <div className="continueButtonContainer">
                             <form action={ siteLink } method="get" target="_top">
